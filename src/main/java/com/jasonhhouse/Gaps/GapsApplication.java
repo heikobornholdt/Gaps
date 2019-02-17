@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.Normalizer;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -234,6 +235,7 @@ public class GapsApplication implements CommandLineRunner {
                 for (int i = 0; i < nodeList.getLength(); i++) {
                     Node node = nodeList.item(i);
                     String title = node.getAttributes().getNamedItem("title").getNodeValue();
+                    title = Normalizer.normalize(title, Normalizer.Form.NFC);
                     if (node.getAttributes().getNamedItem("year") == null) {
                         logger.warn("Year not found for " + title);
                         continue;
