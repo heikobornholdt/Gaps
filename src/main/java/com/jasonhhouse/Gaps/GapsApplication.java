@@ -281,7 +281,7 @@ public class GapsApplication implements CommandLineRunner {
             try {
                 searchMovieUrl = "https://api.themoviedb.org/3/search/movie?api_key=" +
                         properties.getMovieDbApiKey() +
-                        "&language=en-US&page=1&include_adult=false&query=" +
+                        "&language=de&page=1&include_adult=false&query=" +
                         URLEncoder.encode(movie.getName(), "UTF-8") +
                         "&year=" +
                         movie.getYear();
@@ -316,7 +316,7 @@ public class GapsApplication implements CommandLineRunner {
                     JSONObject result = results.getJSONObject(0);
                     int id = result.getInt("id");
 
-                    String movieDetailUrl = "https://api.themoviedb.org/3/movie/" + id + "?api_key=" + properties.getMovieDbApiKey() + "&language=en-US";
+                    String movieDetailUrl = "https://api.themoviedb.org/3/movie/" + id + "?api_key=" + properties.getMovieDbApiKey() + "&language=de";
 
                     request = new Request.Builder()
                             .url(movieDetailUrl)
@@ -340,7 +340,7 @@ public class GapsApplication implements CommandLineRunner {
 
                         int collectionId = movieDetails.getJSONObject("belongs_to_collection").getInt("id");
                         String collectionName = movieDetails.getJSONObject("belongs_to_collection").getString("name");
-                        String collectionUrl = "https://api.themoviedb.org/3/collection/" + collectionId + "?api_key=" + properties.getMovieDbApiKey() + "&language=en-US";
+                        String collectionUrl = "https://api.themoviedb.org/3/collection/" + collectionId + "?api_key=" + properties.getMovieDbApiKey() + "&language=de";
 
                         request = new Request.Builder()
                                 .url(collectionUrl)
@@ -359,7 +359,7 @@ public class GapsApplication implements CommandLineRunner {
                             for (int i = 0; i < parts.length(); i++) {
                                 JSONObject part = parts.getJSONObject(i);
                                 int media_id = part.getInt("id");
-                                String title = part.getString("original_title");
+                                String title = part.getString("title");
                                 int year;
                                 try {
                                     year = Integer.parseInt(part.getString("release_date").substring(0, 4));
