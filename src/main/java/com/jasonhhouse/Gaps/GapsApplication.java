@@ -361,7 +361,7 @@ public class GapsApplication implements CommandLineRunner {
                                 int year;
                                 try {
                                     year = Integer.parseInt(part.getString("release_date").substring(0, 4));
-                                } catch (StringIndexOutOfBoundsException | NumberFormatException e) {
+                                } catch (StringIndexOutOfBoundsException | NumberFormatException | JSONException e) {
                                     logger.warn("No year found for " + title + ". Value returned was '" + part.getString("release_date") + "'. Skipping adding the movie to recommended list.");
                                     continue;
                                 }
